@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 import AllJokes from "./AllJokes";
 import AllScrape from "./AllScrape";
-import AdminCrud from "./AdminCRUD";
+import ContactCrud from "./ContactCrud";
 import Login from "./Login";
 import { Switch, Route, NavLink, useHistory } from "react-router-dom";
 
@@ -14,28 +14,46 @@ const Header = ({ isLoggedIn, loginMsg, isAdmin, loginName }) => {
       <Navbar bg="dark" variant="dark" id="header">
         <Navbar.Brand href="#home">Hold E, Gruppe 8</Navbar.Brand>
         <Nav className="mr-auto">
-          <NavLink className="nav-link" exact activeClassName="selected" href="/" to="/">
+          <NavLink
+            className="nav-link"
+            exact
+            activeClassName="selected"
+            href="/"
+            to="/"
+          >
             Home
-        </NavLink>
-          <NavLink className="nav-link" activeClassName="selected" to="/jokes">
-            Jokes
-        </NavLink>
-
-          {isLoggedIn && (
-            <NavLink className="nav-link" activeClassName="selected" to="/scrape" href="/scrape">
-              Scrape
-            </NavLink>
+          </NavLink>
+          {isAdmin && (
+            <>
+              <li>
+                <NavLink
+                  className="nav-link"
+                  activeClassName="selected"
+                  to="/admin"
+                >
+                  Contacts
+                </NavLink>
+              </li>
+            </>
           )}
           {isAdmin && (
             <>
               <li>
-                <NavLink className="nav-link" activeClassName="selected" to="/admin">
-                  Admin
-            </NavLink>
+                <NavLink
+                  className="nav-link"
+                  activeClassName="selected"
+                  to="/admin"
+                >
+                  Opportunities
+                </NavLink>
               </li>
             </>
           )}
-          <NavLink className="nav-link" activeClassName="selected" to="/login-out">
+          <NavLink
+            className="nav-link"
+            activeClassName="selected"
+            to="/login-out"
+          >
             {loginMsg}
           </NavLink>
           {isLoggedIn && (
@@ -46,7 +64,6 @@ const Header = ({ isLoggedIn, loginMsg, isAdmin, loginName }) => {
             </>
           )}
         </Nav>
-
       </Navbar>
     </>
   );
@@ -55,7 +72,7 @@ const Header = ({ isLoggedIn, loginMsg, isAdmin, loginName }) => {
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [loginName, setLoginName] = useState('');
+  const [loginName, setLoginName] = useState("");
 
   let history = useHistory();
 
@@ -76,7 +93,7 @@ export default function App() {
         loginMsg={isLoggedIn ? "Logout" : "Login"}
         isLoggedIn={isLoggedIn}
         isAdmin={isAdmin}
-        loginName={isLoggedIn ? loginName : ''}
+        loginName={isLoggedIn ? loginName : ""}
       />
 
       <div className="content">
@@ -137,7 +154,7 @@ function Scrape() {
 function Admin() {
   return (
     <div className="pageContent">
-      <AdminCrud />
+      <ContactCrud />
     </div>
   );
 }

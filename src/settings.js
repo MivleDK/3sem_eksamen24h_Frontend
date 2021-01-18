@@ -1,4 +1,5 @@
-var baseUrl = "https://micklarsen.com/3sem_eksamen24h_Backend";
+//var baseUrl = "https://micklarsen.com/3sem_eksamen24h_Backend";
+var baseUrl = "http://localhost:8080/3sem_eksamen24h_Backend";
 
 // export const URL = "http://localhost:8080/3_sem_eksamensprojekt";
 // export const URLJokes = "http://localhost:8080/3_sem_eksamensprojekt/api/jokes";
@@ -14,7 +15,7 @@ export const URL = baseUrl;
 export const URLJokes = baseUrl + "/api/jokes";
 export const URLScrapeSequential = baseUrl + "/api/scrape/sequential";
 export const URLScrapeParallel = baseUrl + "/api/scrape/parallel";
-export const AllUsers = baseUrl + "/api/info/person/all";
+export const URLAllContacts = baseUrl + "/api/contacts/all";
 export const DeleteUser = baseUrl + "/api/info/delete/";
 export const UpdateUser = baseUrl + "/api/info/person";
 export const GetUser = baseUrl + "/api/info/person/";
