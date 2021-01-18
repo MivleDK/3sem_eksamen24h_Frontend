@@ -167,9 +167,12 @@ const userForm = () =>{
             onChange={handleChange}
           />
         </Form.Group>
+        <Button size="sm" variant="success" type="submit">
+          Submit
+        </Button>
         <Button size="sm" variant="success" onClick={() => addContact()}>
           Add Contact
-        </Button>
+        </Button>        
       </Form>
     </div>
   );};
