@@ -1,22 +1,9 @@
 //var baseUrl = "https://micklarsen.com/3sem_eksamen24h_Backend";
 var baseUrl = "http://localhost:8080/3sem_eksamen24h_Backend";
 
-// export const URL = "http://localhost:8080/3_sem_eksamensprojekt";
-// export const URLJokes = "http://localhost:8080/3_sem_eksamensprojekt/api/jokes";
-// export const URLScrapeSequential = "http://localhost:8080/3_sem_eksamensprojekt/api/scrape/sequential";
-// export const URLScrapeParallel = "http://localhost:8080/3_sem_eksamensprojekt/api/scrape/parallel";
-// export const AllUsers = "http://localhost:8080/3_sem_eksamensprojekt/api/info/person/all";
-// export const DeleteUser = "http://localhost:8080/3_sem_eksamensprojekt/api/info/delete/";
-// export const UpdateUser = "http://localhost:8080/3_sem_eksamensprojekt/api/info/person";
-// export const GetUser = "http://localhost:8080/3_sem_eksamensprojekt/api/info/person/";
-// export const AddUser = "http://localhost:8080/3_sem_eksamensprojekt/api/info";
-
 export const URL = baseUrl;
-export const URLJokes = baseUrl + "/api/jokes";
-export const URLScrapeSequential = baseUrl + "/api/scrape/sequential";
-export const URLScrapeParallel = baseUrl + "/api/scrape/parallel";
 export const URLAllContacts = baseUrl + "/api/contacts/all";
-export const URLDeleteContact = baseUrl + "/api/contacts";
+export const URLDeleteContact = baseUrl + "/api/contacts/";
 export const URLUpdateContact = baseUrl + "/api/contacts/";
 export const URLGetContact = baseUrl + "/api/contacts/";
 export const URLAddContact = baseUrl + "/api/contacts/";
