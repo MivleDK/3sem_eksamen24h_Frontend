@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AllUsers, URLDeleteContact, URLUpdateContact, URLGetContact, URLAddContact, URLAllContacts } from "./settings";
+import { URLDeleteContact, URLUpdateContact, URLGetContact, URLAddContact, URLAllContacts } from "./settings";
 import {
   Container,
   Row,
@@ -24,16 +24,11 @@ function ContactCrud() {
   const [allContacts, setAllContacts] = useState([]);
   const [contact, setContact] = useState(initialValues);
 
-  useEffect(() => {
-    fetchContacts();
-  }, []);
-
   const fetchContacts = () => {
     fetch(URLAllContacts)
       .then((res) => res.json())
       .then((data) => {
         setAllContacts(data);
-        console.log(data);
       });
   };
 
@@ -54,7 +49,6 @@ function ContactCrud() {
 
   const deletePerson = (email) => {
     const options = makeOptions("DELETE");
-
     fetch(URLDeleteContact);
   };
 
@@ -85,6 +79,7 @@ function ContactCrud() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    //fetchContacts();
     updateForm(contact);
   };
 
@@ -93,7 +88,7 @@ function ContactCrud() {
     console.log(contact.email);
     fetch(URLAddContact, options)
       .then((res) => res.json())
-      .then((res) => fetchContact())
+      .then((res) => fetchContacts())
       .catch((err) => {
         if (err.status) {
           err.fullError.then((e) => console.log(e.detail));
@@ -107,7 +102,7 @@ function ContactCrud() {
     const options = makeOptions("PUT", contact);
 
     fetch(URLUpdateContact, options)
-      .then((res) => fetchContact())
+      .then((res) => fetchContacts())
       .catch((err) => {
         if (err.status) {
           err.fullError.then((e) => console.log(e.detail));
@@ -167,9 +162,12 @@ const userForm = () =>{
             onChange={handleChange}
           />
         </Form.Group>
-        <Button size="sm" variant="success" onClick={() => addContact()}>
+        <Button size="sm" className="mr-2" variant="success" onClick={() => addContact()}>
           Add Contact
-        </Button>
+        </Button>        
+        <Button size="sm" variant="primary" type="submit">
+          Update
+        </Button>        
       </Form>
     </div>
   );};
@@ -221,6 +219,10 @@ const userForm = () =>{
       </div>
     );
   };
+
+  useEffect(() => {
+    fetchContacts();
+  }, []);
 
   return (
     <div>
