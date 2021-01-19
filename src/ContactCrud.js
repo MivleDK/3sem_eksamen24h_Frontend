@@ -59,7 +59,7 @@ function ContactCrud() {
           console.log("Network error");
         }
       });
-  };  
+  };
 
   const updateForm = (contact) => {
     const options = makeOptions("PUT", contact);
@@ -73,7 +73,7 @@ function ContactCrud() {
           console.log("Network error" + err);
         }
       });
-  };  
+  };
 
   const deleteContact = (email) => {
     const options = makeOptions("DELETE");
@@ -92,7 +92,6 @@ function ContactCrud() {
         }
       });
   };
-
 
   /*
   Function for POST, PUT and DELETE
@@ -116,7 +115,7 @@ function ContactCrud() {
     const id = target.id;
     const value = target.value;
     setContact({ ...contact, [id]: value });
-  };  
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -124,69 +123,70 @@ function ContactCrud() {
     updateForm(contact);
   };
 
-
-
-
-
-
-const userForm = () =>{
-  return (
-    <div>
-      <Form inline onSubmit={handleSubmit}>
-        <Form.Group className="mr-2" controlId="name">
-          <Form.Control
+  const userForm = () => {
+    return (
+      <div>
+        <Form inline onSubmit={handleSubmit}>
+          <Form.Group className="mr-2" controlId="name">
+            <Form.Control
+              size="sm"
+              type="text"
+              placeholder="Name"
+              value={contact.name}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group className="mr-2" controlId="jobTitle">
+            <Form.Control
+              size="sm"
+              type="text"
+              placeholder="Job title"
+              value={contact.jobTitle}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group className="mr-2" controlId="company">
+            <Form.Control
+              size="sm"
+              type="text"
+              placeholder="Company name"
+              value={contact.company}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group className="mr-2" controlId="phone">
+            <Form.Control
+              size="sm"
+              type="text"
+              placeholder="Phone number"
+              value={contact.phone}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group className="mr-2" controlId="email">
+            <Form.Control
+              size="sm"
+              type="email"
+              placeholder="Email address"
+              value={contact.email}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Button
             size="sm"
-            type="text"
-            placeholder="Name"
-            value={contact.name}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        <Form.Group className="mr-2" controlId="jobTitle">
-          <Form.Control
-            size="sm"
-            type="text"
-            placeholder="Job title"
-            value={contact.jobTitle}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        <Form.Group className="mr-2" controlId="company">
-          <Form.Control
-            size="sm"
-            type="text"
-            placeholder="Company name"
-            value={contact.company}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        <Form.Group className="mr-2" controlId="phone">
-          <Form.Control
-            size="sm"
-            type="text"
-            placeholder="Phone number"
-            value={contact.phone}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        <Form.Group className="mr-2" controlId="email">
-          <Form.Control
-            size="sm"
-            type="email"
-            placeholder="Email address"
-            value={contact.email}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        <Button size="sm" className="mr-2" variant="success" onClick={() => addContact()}>
-          Add Contact
-        </Button>        
-        <Button size="sm" variant="primary" type="submit">
-          Update
-        </Button>        
-      </Form>
-    </div>
-  );};
+            className="mr-2"
+            variant="success"
+            onClick={() => addContact()}
+          >
+            Add Contact
+          </Button>
+          <Button size="sm" variant="primary" type="submit">
+            Update
+          </Button>
+        </Form>
+      </div>
+    );
+  };
 
   const contactsFormTable = () => {
     return (
@@ -215,12 +215,18 @@ const userForm = () =>{
                           <td>{elem.phone}</td>
                           <td>{elem.email}</td>
                           <td>
-                            <Button variant="warning" onClick={() => fetchContact(elem.email)}>
+                            <Button
+                              variant="warning"
+                              onClick={() => fetchContact(elem.email)}
+                            >
                               Edit
                             </Button>
                           </td>
                           <td>
-                            <Button variant="danger" onClick={() => deleteContact(elem.email)}>
+                            <Button
+                              variant="danger"
+                              onClick={() => deleteContact(elem.email)}
+                            >
                               Delete
                             </Button>
                           </td>
@@ -245,7 +251,7 @@ const userForm = () =>{
       <Container>
         <h2 className="mb-4">Contacts CRUD</h2>
         {userForm()}
-        </Container>
+      </Container>
       {contactsFormTable()}
     </div>
   );

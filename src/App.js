@@ -120,9 +120,6 @@ export default function App() {
   );
 }
 
-// You can think of these components as "pages"
-// in your app.
-
 function Home() {
   return (
     <div className="pageContent">
