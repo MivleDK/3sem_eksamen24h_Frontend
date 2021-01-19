@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./style2.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Nav, Form, FormControl, Button, Container, Row, Col } from "react-bootstrap";
 import ContactCrud from "./ContactCrud";
+import OpportunityCrud from "./OpportunityCrud";
 import Login from "./Login";
 import { Switch, Route, NavLink, useHistory } from "react-router-dom";
 
@@ -27,7 +28,7 @@ const Header = ({ isLoggedIn, loginMsg, isAdmin, loginName }) => {
                 <NavLink
                   className="nav-link"
                   activeClassName="selected"
-                  to="/admin"
+                  to="/contactCrud"
                 >
                   Contacts
                 </NavLink>
@@ -40,7 +41,7 @@ const Header = ({ isLoggedIn, loginMsg, isAdmin, loginName }) => {
                 <NavLink
                   className="nav-link"
                   activeClassName="selected"
-                  to="/admin"
+                  to="/opportunityCrud"
                 >
                   Opportunities
                 </NavLink>
@@ -99,9 +100,12 @@ export default function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/admin">
-            <Admin />
+          <Route path="/contactCrud">
+            <AdminContactCrud />
           </Route>
+          <Route path="/opportunityCrud">
+            <AdminOpportunityCrud />
+          </Route>          
           <Route path="/login-out">
             <Login
               loginMsg={isLoggedIn ? "Logout" : "Login"}
@@ -122,15 +126,38 @@ export default function App() {
 function Home() {
   return (
     <div className="pageContent">
-      <h2>Home</h2>
+      <Container>
+        <Row>
+          <Col>
+            <h2>Home</h2>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <p>
+              Welcome to this Customer relation management system (CRM)
+              <br />
+              Please log in to get started
+            </p>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
 
-function Admin() {
+function AdminContactCrud() {
   return (
     <div className="pageContent">
       <ContactCrud />
+    </div>
+  );
+}
+
+function AdminOpportunityCrud() {
+  return (
+    <div className="pageContent">
+      <OpportunityCrud />
     </div>
   );
 }

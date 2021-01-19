@@ -7,3 +7,4 @@ export const URLDeleteContact = baseUrl + "/api/contacts/";
 export const URLUpdateContact = baseUrl + "/api/contacts/";
 export const URLGetContact = baseUrl + "/api/contacts/";
 export const URLAddContact = baseUrl + "/api/contacts/";
+export const URLGetOpportunities = baseUrl + "/api/opportunity/all";
