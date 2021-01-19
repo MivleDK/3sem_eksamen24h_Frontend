@@ -18,7 +18,7 @@ function ContactCrud() {
     company: "",
     jobTitle: "",
     phone: "",
-    opportunities: "",
+    opportunities: [],
   };
 
   const [allContacts, setAllContacts] = useState([]);
@@ -47,9 +47,50 @@ function ContactCrud() {
       });
   };
 
-  const deletePerson = (email) => {
+  const addContact = () => {
+    const options = makeOptions("POST", contact);
+    fetch(URLAddContact, options)
+      .then((res) => res.json())
+      .then((res) => fetchContacts())
+      .catch((err) => {
+        if (err.status) {
+          err.fullError.then((e) => console.log(e.detail));
+        } else {
+          console.log("Network error");
+        }
+      });
+  };  
+
+  const updateForm = (contact) => {
+    const options = makeOptions("PUT", contact);
+
+    fetch(URLUpdateContact, options)
+      .then((res) => fetchContacts())
+      .catch((err) => {
+        if (err.status) {
+          err.fullError.then((e) => console.log(e.detail));
+        } else {
+          console.log("Network error" + err);
+        }
+      });
+  };  
+
+  const deleteContact = (email) => {
     const options = makeOptions("DELETE");
-    fetch(URLDeleteContact);
+
+    fetch(URLDeleteContact + email, options)
+      .then((res) => res.json())
+      .then((data) => {
+        setAllContacts(data);
+        fetchContacts();
+      })
+      .catch((err) => {
+        if (err.status) {
+          err.fullError.then((e) => console.log(e.detail));
+        } else {
+          console.log("Network error");
+        }
+      });
   };
 
 
@@ -83,34 +124,9 @@ function ContactCrud() {
     updateForm(contact);
   };
 
-  const addContact = () => {
-    const options = makeOptions("POST", contact);
-    console.log(contact.email);
-    fetch(URLAddContact, options)
-      .then((res) => res.json())
-      .then((res) => fetchContacts())
-      .catch((err) => {
-        if (err.status) {
-          err.fullError.then((e) => console.log(e.detail));
-        } else {
-          console.log("Network error");
-        }
-      });
-  };
 
-  const updateForm = (contact) => {
-    const options = makeOptions("PUT", contact);
 
-    fetch(URLUpdateContact, options)
-      .then((res) => fetchContacts())
-      .catch((err) => {
-        if (err.status) {
-          err.fullError.then((e) => console.log(e.detail));
-        } else {
-          console.log("Network error" + err);
-        }
-      });
-  };
+
 
 
 const userForm = () =>{
@@ -204,7 +220,7 @@ const userForm = () =>{
                             </Button>
                           </td>
                           <td>
-                            <Button variant="danger" onClick={() => deletePerson(elem.email)}>
+                            <Button variant="danger" onClick={() => deleteContact(elem.email)}>
                               Delete
                             </Button>
                           </td>

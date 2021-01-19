@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "./style2.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
-import AllJokes from "./AllJokes";
-import AllScrape from "./AllScrape";
 import ContactCrud from "./ContactCrud";
 import Login from "./Login";
 import { Switch, Route, NavLink, useHistory } from "react-router-dom";
@@ -101,12 +99,6 @@ export default function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/jokes">
-            <Jokes />
-          </Route>
-          <Route path="/scrape">
-            <Scrape />
-          </Route>
           <Route path="/admin">
             <Admin />
           </Route>
@@ -131,22 +123,6 @@ function Home() {
   return (
     <div className="pageContent">
       <h2>Home</h2>
-    </div>
-  );
-}
-
-function Jokes() {
-  return (
-    <div className="pageContent">
-      <AllJokes />
-    </div>
-  );
-}
-
-function Scrape() {
-  return (
-    <div className="pageContent">
-      <AllScrape />
     </div>
   );
 }
